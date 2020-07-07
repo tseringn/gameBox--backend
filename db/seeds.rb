@@ -34,10 +34,15 @@ response = Net::HTTP.get_response(info)
             
             name = game["name"]
             rating = game["rating"]
-            genre = game["genres"][0]['name']
-
-            # platform = game["parent_platforms"][0]["platform"]["name"]
-            platform = game["parent_platforms"][1]["platform"]["name"]
+            genre = (game["genres"].collect do |x|
+                x['name']
+            end).join(', ')
+            
+            platform = (game["parent_platforms"].collect do |x|
+                x.collect do |p, v|
+                    v["name"]
+                end
+            end).join(', ')
             img_url = game["background_image"]
             link = game["stores"][0]["url_en"]
             Game.create(name: name, rating: rating, img_ur: img_url, platform: platform, link: link, genre: genre)
