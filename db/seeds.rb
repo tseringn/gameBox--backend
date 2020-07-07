@@ -8,6 +8,8 @@
 
 
 Game.destroy_all
+User.destroy_all
+UserGame.destroy_all
 
 require "uri"
 require "net/http"
@@ -48,3 +50,12 @@ response = Net::HTTP.get_response(info)
             Game.create(name: name, rating: rating, img_ur: img_url, platform: platform, link: link, genre: genre)
             end
         
+user1 = User.create(name: 'Bob', profile_pic: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg')
+
+game1 = Game.all.sample
+game2 = Game.all.sample
+game3 = Game.all.sample
+
+user_game1 = UserGame.create(user_id: user1.id, game_id: game1.id, completed: false, time_played: 20)
+user_game2 = UserGame.create(user_id: user1.id, game_id: game2.id, completed: true, time_played: 100)
+user_game3 = UserGame.create(user_id: user1.id, game_id: game3.id, completed: false, time_played: 40)
