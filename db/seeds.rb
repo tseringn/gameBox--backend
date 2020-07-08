@@ -36,6 +36,8 @@ response = Net::HTTP.get_response(info)
             
             name = game["name"]
             rating = game["rating"]
+            ratings_count = game["ratings_count"]
+            playtime = game["playtime"]
             genre = (game["genres"].collect do |x|
                 x['name']
             end).join(', ')
@@ -47,7 +49,7 @@ response = Net::HTTP.get_response(info)
             end).join(', ')
             img_url = game["background_image"]
             link = game["stores"][0]["url_en"]
-            Game.create(name: name, rating: rating, img_ur: img_url, platform: platform, link: link, genre: genre)
+            Game.create(name: name, rating: rating, ratings_count: ratings_count,playtime: playtime, img_ur: img_url, platform: platform, link: link, genre: genre)
             end
         
 user1 = User.create(name: 'Bob', profile_pic: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg')
