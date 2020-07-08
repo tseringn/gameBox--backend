@@ -51,6 +51,7 @@ response = Net::HTTP.get_response(info)
             end
         
 user1 = User.create(name: 'Bob', profile_pic: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg')
+user2 = User.create(name: 'Mike', profile_pic: 'https://i.ytimg.com/vi/aaqzPMOd_1g/maxresdefault.jpg')
 
 game1 = Game.all.sample
 game2 = Game.all.sample
