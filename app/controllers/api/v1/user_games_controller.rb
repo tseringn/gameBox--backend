@@ -9,6 +9,16 @@ class Api::V1::UserGamesController < ApplicationController
         render json: user_game
     end
 
+    def show
+        user_game = UserGame.find(params[:id])
+        render json: user_game
+    end
+
+    def destroy
+        user_game = UserGame.find(params[:id])
+        user_game.destroy
+    end
+
     private
 
     def user_game_params
