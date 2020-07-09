@@ -18,6 +18,7 @@ class Api::V1::UserGamesController < ApplicationController
         user_game = UserGame.find(params[:id])
         user_game.destroy
     end
+    
     def update
     user_game=UserGame.find(params[:id])
     user_game.update(user_game_params)
