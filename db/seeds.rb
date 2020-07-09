@@ -28,7 +28,8 @@ require "net/http"
 # response = https.request(request)
 # games = response.read_body
 
-info = URI.parse("https://api.rawg.io/api/games")
+1.upto(5) do |pagenum|
+info = URI.parse("https://api.rawg.io/api/games?page=#{pagenum}")
 response = Net::HTTP.get_response(info)
         game_info = JSON.parse(response.body)
 
@@ -50,7 +51,8 @@ response = Net::HTTP.get_response(info)
             img_url = game["background_image"]
             link = game["stores"][0]["url_en"]
             Game.create(name: name, rating: rating, ratings_count: ratings_count,playtime: playtime, img_ur: img_url, platform: platform, link: link, genre: genre)
-            end
+    end
+end
         
 user1 = User.create(name: 'Bob', profile_pic: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg')
 user2 = User.create(name: 'Mike', profile_pic: 'https://i.ytimg.com/vi/aaqzPMOd_1g/maxresdefault.jpg')
