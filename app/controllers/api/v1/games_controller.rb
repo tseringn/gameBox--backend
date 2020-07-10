@@ -11,6 +11,16 @@ class Api::V1::GamesController < ApplicationController
         game=Game.find(params[:id])
         game.update(game_params)
         render json: game
+    end 
+    def genre
+        genres=[]
+        Game.all.each do |game|
+           genre=game.genre.split(', ')
+            genre.each do |g|
+                genres.push(g)
+            end
+        end
+        render json: genres.uniq
     end
 
 

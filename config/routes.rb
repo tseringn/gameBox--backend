@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   namespace :api do
     namespace :v1 do
+      get "/genres", to: "games#genre"
       resources :games
     end
   end
